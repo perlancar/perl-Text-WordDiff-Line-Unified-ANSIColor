@@ -26,8 +26,8 @@ sub _split_str {
 sub word_diff {
     my @args = map {my @a = _split_str($_); \@a;} @_;
     my $diff = Algorithm::Diff->new(@args);
-    my $out1 = $colors{delete_line} . "-";
-    my $out2 = $colors{insert_line} . "+";
+    my $out1 = "";
+    my $out2 = "";
     while ($diff->Next) {
         if (my @same = $diff->Same) {
             $out1 .= (join '', @same);
@@ -42,7 +42,12 @@ sub word_diff {
         }
     }
 
-    return $out1 . "\e[0m" . $out2 . "\e[0m";
+    $out1 =~ s/^/$colors{delete_line}-/gm;
+    $out1 =~ s/$/\e[0m/gm;
+    $out2 =~ s/^/$colors{insert_line}+/gm;
+    $out2 =~ s/$/\e[0m/gm;
+
+    $out1 . $out2;
 }
 
 # ABSTRACT: Generate unified-style word-base ANSIColor diffs
