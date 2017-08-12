@@ -3,6 +3,8 @@ package Text::WordDiff::Unified::ANSIColor;
 # DATE
 # VERSION
 
+## no critic (Modules::ProhibitAutomaticExportation)
+
 # based on MojoMojo::WordDiff, which in turn was based on Text::WordDiff
 
 use strict;
@@ -50,6 +52,7 @@ sub word_diff {
     $out1 . $out2;
 }
 
+1;
 # ABSTRACT: Generate unified-style word-base ANSIColor diffs
 
 =head1 SYNOPSIS
@@ -65,6 +68,13 @@ Sample output (color shown using <I<color>> and <I</color>>):
 
 
 =head1 DESCRIPTION
+
+
+=head1 FUNCTIONS
+
+=head2 word_diff
+
+Usage: word_diff($str1, $str2) => str
 
 
 =head1 SEE ALSO
