@@ -22,7 +22,7 @@ our %colors = (
 );
 
 sub _split_str {
-    split /\b/, $_[0];
+    split //, $_[0];
 }
 
 sub word_diff {
